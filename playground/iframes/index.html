@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iFrame Interaction | QAJourney Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.35.0/tabler-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <link rel="icon" href="/assets/logo/favicon.png"/>
+</head>
+<body>
+<header>
+  <div class="logo"><a href="/"><img src="/assets/logo/qajourney-logo.png" alt="QAJourney"/></a></div>
+  <nav class="header-nav"><a href="/">Home</a><a href="https://qajourney.net" target="_blank">Blog</a><button id="themeToggle" class="theme-toggle" title="Toggle light/dark">🌗</button></nav>
+</header>
+<div class="page-hero"><div class="page-hero-inner">
+  <div class="breadcrumb"><a href="/">Home</a> / iFrame Interaction</div>
+  <h1>iFrame Interaction</h1>
+  <p>Practice frame context switching. A common automation hurdle — find elements inside embedded frames.</p>
+</div></div>
+<div class="sandbox-wrapper">
+  <div class="sandbox-layout">
+    <div class="sidebar" id="sidebar"><div class="sidebar-inner"><div><div class="sidebar-section-title">Test scenario</div>
+<p>iFrames create a separate document context. You must switch into the frame before locating any elements inside it.</p></div>
+<div><div class="sidebar-section-title">Test goals</div>
+<ul class="sidebar-goals">
+<li>Switch to content iframe and read heading text</li>
+<li>Switch to form iframe and fill the input</li>
+<li>Click submit inside the frame and verify result</li>
+<li>Confirm parent-context locators fail on iframe elements</li>
+</ul></div>
+<div><div class="sidebar-section-title">Playwright snippet</div>
+<div class="code-block" style="margin:0;font-size:11px;"><span class="kw">const</span> frame = page.frameLocator(
+  <span class="st">'[data-testid="form-iframe"]'</span>
+);
+<span class="kw">await</span> frame.locator(
+  <span class="st">'[data-testid="iframe-input"]'</span>
+).fill(<span class="st">'Hello'</span>);</div></div>
+<div><div class="sidebar-section-title">Related reading</div>
+<div class="resource-group-label">Manual testing</div>
+<div class="resource-links">
+<a href="https://qajourney.net/debugging-in-qa-why-manual-testing-and-ai-assistance-matter/" target="_blank" class="resource-link"><i class="ti ti-article"></i>Debugging in QA</a>
+</div>
+<div class="resource-group-label">Automate this with</div>
+<div class="resource-links">
+<a href="https://qajourney.net/playwright-for-qa-testing/" target="_blank" class="resource-link"><i class="ti ti-code"></i>Playwright — real-world QA</a>
+<a href="https://qajourney.net/cypress-automation-testing-guide/" target="_blank" class="resource-link"><i class="ti ti-code"></i>Cypress automation guide</a>
+<a href="https://qajourney.net/selenium-automation-qa-testers/" target="_blank" class="resource-link"><i class="ti ti-code"></i>Selenium — no CI/CD needed</a>
+</div></div></div></div>
+    <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar"><i class="ti ti-chevron-left" id="toggleIcon"></i></button>
+    <div class="main-content">
+      <div class="panel">
+        <div class="tabs">
+          <button class="tab-btn active" data-group="main" data-tab="tab-target">Test Target</button>
+          <button class="tab-btn" data-group="main" data-tab="tab-tc">Test Cases</button>
+          <button class="tab-btn" data-group="main" data-tab="tab-bug">Bug Report</button>
+          <button class="tab-btn" data-group="main" data-tab="tab-ai">Hybrid Testing</button>
+        </div>
+        <div class="tab-pane active" id="tab-target" data-group="main"><div class="panel-body">
+<div style="margin-bottom:1.25rem;">
+<div class="sidebar-section-title" style="margin-bottom:.5rem;">Content iframe <code style="font-size:11px;">data-testid="content-iframe"</code></div>
+<div class="iframe-wrapper">
+<div class="iframe-toolbar"><div class="iframe-dot" style="background:#ef4444;"></div><div class="iframe-dot" style="background:#f59e0b;margin-left:4px;"></div><div class="iframe-dot" style="background:#10b981;margin-left:4px;"></div><span style="margin-left:10px;">iframe › content</span></div>
+<iframe data-testid="content-iframe" srcdoc="&lt;html&gt;&lt;head&gt;&lt;style&gt;body{margin:0;padding:1.25rem;font-family:sans-serif;background:#0b0e14;color:#e2e8f0;font-size:13px;}h3{color:#22d3ee;font-family:monospace;font-size:13px;margin-bottom:.75rem;}p{color:#94a3b8;line-height:1.6;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;h3 data-testid=&quot;iframe-heading&quot;&gt;// INSIDE IFRAME&lt;/h3&gt;&lt;p&gt;You are reading content inside the iframe. Switch frame context before locating elements here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;" style="width:100%;height:140px;border:none;"></iframe>
+</div>
+</div>
+<div>
+<div class="sidebar-section-title" style="margin-bottom:.5rem;">Form iframe <code style="font-size:11px;">data-testid="form-iframe"</code></div>
+<div class="iframe-wrapper">
+<div class="iframe-toolbar"><div class="iframe-dot" style="background:#ef4444;"></div><div class="iframe-dot" style="background:#f59e0b;margin-left:4px;"></div><div class="iframe-dot" style="background:#10b981;margin-left:4px;"></div><span style="margin-left:10px;">iframe › form</span></div>
+<iframe data-testid="form-iframe" srcdoc="&lt;html&gt;&lt;head&gt;&lt;style&gt;body{margin:0;padding:1.25rem;font-family:sans-serif;background:#0b0e14;color:#e2e8f0;font-size:13px;}label{display:block;font-size:11px;color:#64748b;margin-bottom:5px;}input{width:100%;background:#111620;border:1px solid #2a3448;color:#e2e8f0;padding:8px 12px;border-radius:6px;font-size:13px;box-sizing:border-box;margin-bottom:10px;outline:none;}button{background:#3b82f6;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;}#res{margin-top:10px;font-size:12px;color:#10b981;display:none;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;label&gt;Enter something inside the frame:&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ii&quot; data-testid=&quot;iframe-input&quot; placeholder=&quot;Type here...&quot;/&gt;&lt;button data-testid=&quot;iframe-submit&quot; onclick=&quot;var v=document.getElementById(&#39;ii&#39;).value;var r=document.getElementById(&#39;res&#39;);r.textContent=&#39;Submitted: &#39;+v;r.style.display=&#39;block&#39;&quot;&gt;SUBMIT IN FRAME&lt;/button&gt;&lt;div id=&quot;res&quot; data-testid=&quot;iframe-result&quot;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;" style="width:100%;height:160px;border:none;"></iframe>
+</div>
+</div></div></div>
+        <div class="tab-pane" id="tab-tc" data-group="main">
+          <div class="tc-meta"><span class="tc-progress" id="tc-progress"></span><button class="btn btn-ghost btn-sm" onclick="resetTC()">Reset</button></div>
+          <div id="tc-list"></div>
+          <div class="export-row"><span class="export-label">Export:</span><button class="btn btn-ghost btn-sm" onclick="exportTC('copy')"><i class="ti ti-copy"></i> Copy .md</button><button class="btn btn-ghost btn-sm" onclick="exportTC('download')"><i class="ti ti-download"></i> Download .md</button><span class="save-status" id="export-status"></span></div>
+        </div>
+        <div class="tab-pane" id="tab-bug" data-group="main">
+          <div class="bug-form">
+            <label>Bug title</label><input type="text" id="bug-title" placeholder="One-line summary"/>
+            <label>Steps to reproduce</label><textarea id="bug-steps" rows="4" placeholder="1. Go to...&#10;2. Do...&#10;3. Observe..."></textarea>
+            <label>Expected result</label><textarea id="bug-expected" rows="2" placeholder="What should happen..."></textarea>
+            <label>Actual result</label><textarea id="bug-actual" rows="2" placeholder="What actually happened..."></textarea>
+            <div class="severity-grid">
+              <div><label>Severity</label><select id="bug-severity"><option value="">— Select —</option><option>Critical</option><option>Major</option><option>Moderate</option><option>Minor</option></select></div>
+              <div><label>Priority</label><select id="bug-priority"><option value="">— Select —</option><option>Urgent</option><option>High</option><option>Medium</option><option>Low</option></select></div>
+            </div>
+            <label>Environment</label><input type="text" id="bug-env" placeholder="Browser / OS / Build"/>
+            <label>Additional notes</label><textarea id="bug-notes" rows="2" placeholder="Screenshots, tickets, workarounds..."></textarea>
+            <div class="btn-group"><button class="btn btn-ghost btn-sm" onclick="clearBugReport()">Clear form</button></div>
+          </div>
+          <div class="export-row"><span class="export-label">Export:</span><button class="btn btn-ghost btn-sm" onclick="exportBug('copy')"><i class="ti ti-copy"></i> Copy .md</button><button class="btn btn-ghost btn-sm" onclick="exportBug('download')"><i class="ti ti-download"></i> Download .md</button><span class="save-status" id="bug-export-status"></span></div>
+        </div>
+        <div class="tab-pane" id="tab-ai" data-group="main">
+          <div class="qajpb">
+            <div class="qajpb-header"><p>Select test type, framework, and output. Context is pre-filled for this module. Copy the prompt into any AI tool.</p></div>
+            <span class="qajpb-label">Test type</span>
+            <div class="qajpb-pills"><div class="qajpb-pill" data-group="test" data-val="Manual">Manual</div><div class="qajpb-pill" data-group="test" data-val="Automation">Automation</div><div class="qajpb-pill" data-group="test" data-val="Regression">Regression</div><div class="qajpb-pill" data-group="test" data-val="Smoke">Smoke</div><div class="qajpb-pill" data-group="test" data-val="E2E">E2E</div><div class="qajpb-pill" data-group="test" data-val="API">API</div></div>
+            <span class="qajpb-label">Framework</span>
+            <div class="qajpb-pills"><div class="qajpb-pill" data-group="framework" data-val="Cypress">Cypress</div><div class="qajpb-pill" data-group="framework" data-val="Playwright">Playwright</div><div class="qajpb-pill" data-group="framework" data-val="Selenium">Selenium</div><div class="qajpb-pill" data-group="framework" data-val="Postman">Postman</div><div class="qajpb-pill" data-group="framework" data-val="Generic">None / Generic</div></div>
+            <span class="qajpb-label">Output type</span>
+            <div class="qajpb-pills"><div class="qajpb-pill" data-group="output" data-val="Test case generation">Test case generation</div><div class="qajpb-pill" data-group="output" data-val="Bug report">Bug report</div><div class="qajpb-pill" data-group="output" data-val="Regression suite">Regression suite</div><div class="qajpb-pill" data-group="output" data-val="Edge case discovery">Edge case discovery</div><div class="qajpb-pill" data-group="output" data-val="Acceptance criteria review">Acceptance criteria review</div></div>
+            <hr class="qajpb-divider">
+            <div class="qajpb-advisory" id="qajpb-advisory"></div>
+            <span class="qajpb-label">Context (pre-filled — edit as needed)</span>
+            <div class="qajpb-context"><textarea id="qajpb-ctx">Two iframes: a read-only content iframe and a form iframe with an input and submit button. Test frame context switching and element interaction inside embedded frames.</textarea></div>
+            <button class="qajpb-btn" onclick="qajpbGenerate()">→ Generate prompt</button>
+            <div class="qajpb-output" id="qajpb-output"><span class="qajpb-label">Your prompt</span><div id="qajpb-cards"></div></div>
+            <div class="qajpb-footer">Built for <a href="https://qajourney.net">QAJourney.net</a>. <a href="https://qajourney.net/qa-prompt-builder/">Full prompt builder →</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel notes-panel">
+        <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between;"><span>Test notes &amp; issues</span><span class="save-status" id="save-status"></span></div>
+        <div class="panel-body">
+          <textarea class="notes-area" id="qa-notes" placeholder="Write your findings, issues, and observations here..."></textarea>
+          <div class="notes-footer">
+            <button class="btn btn-ghost btn-sm" onclick="saveNotes()"><i class="ti ti-device-floppy"></i> Save</button>
+            <button class="btn btn-ghost btn-sm" onclick="clearNotes()">Clear</button>
+            <button class="btn btn-ghost btn-sm" onclick="exportNotes('copy')"><i class="ti ti-copy"></i> Copy .md</button>
+            <button class="btn btn-ghost btn-sm" onclick="exportNotes('download')"><i class="ti ti-download"></i> Download .md</button>
+            <span class="save-status" id="notes-export-status"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>Part of the <a href="https://qajourney.net" target="_blank">QAJourney.net</a> ecosystem.</p>
+  <div class="socials"><a href="https://www.youtube.com/@QAJourneyBlog" target="_blank"><i class="fab fa-youtube"></i></a><a href="https://www.facebook.com/breakverify" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://www.linkedin.com/company/qa-journey-blog" target="_blank"><i class="fab fa-linkedin-in"></i></a><a href="https://buymeacoffee.com/qajourney" target="_blank"><i class="fas fa-mug-hot"></i></a></div>
+  <a class="back-link" href="/">← Back to Modules</a>
+</footer>
+<div id="bmc-float"><a href="https://buymeacoffee.com/qajourney" target="_blank">☕ Support Us</a></div>
+<script src="/assets/js/script.js"></script>
+<script src="/assets/js/prompt-builder.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var tcs=[
+    {id:'tc-01',label:'Switch to content-iframe → read heading text',type:'happy'},
+    {id:'tc-02',label:'Switch to form-iframe → fill iframe-input',type:'happy'},
+    {id:'tc-03',label:'Click iframe-submit → result text appears',type:'happy'},
+    {id:'tc-04',label:'Try locating iframe element from parent → fails',type:'edge'},
+    {id:'tc-05',label:'Submit empty iframe input → result shows empty string',type:'edge'}
+  ];
+  var list=document.getElementById('tc-list'); if(!list)return;
+  tcs.forEach(function(tc){
+    var row=document.createElement('label'); row.className='tc-row'; row.dataset.id=tc.id;
+    row.innerHTML='<input type="checkbox"/><span class="tc-id">'+tc.id.toUpperCase()+'</span><span class="tc-label">'+tc.label+'</span><span class="tc-badge badge-'+tc.type+'">'+tc.type+'</span>';
+    list.appendChild(row);
+  });
+  if(typeof renderTC==="function") renderTC();
+});
+</script>
+</body>
+</html>

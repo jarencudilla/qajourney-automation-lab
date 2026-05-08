@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QA Testing Playground | QAJourney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.35.0/tabler-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="assets/logo/favicon.png"/>
+</head>
+<body>
+
+<header>
+  <div class="logo"><a href="/"><img src="assets/logo/qajourney-logo.png" alt="QAJourney"/></a></div>
+  <nav class="header-nav">
+    <a href="#modules">Modules</a>
+    <a href="https://qajourney.net" target="_blank">Blog</a>
+    <a href="https://github.com/jarencudilla/qajourney-automation-lab" target="_blank">GitHub</a>
+    <button id="themeToggle" class="theme-toggle" title="Toggle light/dark">🌗</button>
+  </nav>
+</header>
+
+<section class="home-hero">
+  <h1><span class="hl">QA</span> Testing Playground</h1>
+  <p>A QA-first environment for manual testing, automation practice, and hybrid AI-assisted workflows. No setup. Open and test.</p>
+  <p class="sub">// The CodePen for QA engineers</p>
+  <a class="cta" href="#modules">Explore Modules →</a>
+</section>
+
+<section class="features" id="modules">
+  <div class="features-title">// Interactive Test Modules</div>
+  <div class="modules-grid">
+
+    <a href="login/" class="module-card">
+      <i class="ti ti-lock"></i>
+      <div>
+        <span class="module-card-title">Login Scenario</span>
+        <span class="module-card-desc">Happy path, sad path, empty fields, lockout, SQL injection. The QA classic with intentional edge cases.</span>
+      </div>
+    </a>
+
+    <a href="form/" class="module-card">
+      <i class="ti ti-form-input"></i>
+      <div>
+        <span class="module-card-title">Form Validation</span>
+        <span class="module-card-desc">Required fields, type enforcement, min/max length, numeric ranges, and HTML5 validation.</span>
+      </div>
+    </a>
+
+    <a href="basic-ui/" class="module-card">
+      <i class="ti ti-layout-grid"></i>
+      <div>
+        <span class="module-card-title">Basic UI Elements</span>
+        <span class="module-card-desc">Inputs, dropdowns, checkboxes, radio buttons. The building blocks of every UI test suite.</span>
+      </div>
+    </a>
+
+    <a href="dynamic-dom/" class="module-card">
+      <i class="ti ti-bolt"></i>
+      <div>
+        <span class="module-card-title">Dynamic DOM</span>
+        <span class="module-card-desc">Elements that appear, disappear, and change. Test your explicit wait strategies.</span>
+      </div>
+    </a>
+
+    <a href="alerts/" class="module-card">
+      <i class="ti ti-alert-triangle"></i>
+      <div>
+        <span class="module-card-title">JavaScript Alerts</span>
+        <span class="module-card-desc">Native <code>alert()</code>, <code>confirm()</code>, and <code>prompt()</code> dialogs. Handle them in automation.</span>
+      </div>
+    </a>
+
+    <a href="iframes/" class="module-card">
+      <i class="ti ti-box-multiple"></i>
+      <div>
+        <span class="module-card-title">iFrame Interaction</span>
+        <span class="module-card-desc">Frame context switching. A common automation hurdle — practice it here.</span>
+      </div>
+    </a>
+
+    <a href="network-delay/" class="module-card">
+      <i class="ti ti-clock-pause"></i>
+      <div>
+        <span class="module-card-title">Network Delays</span>
+        <span class="module-card-desc">Slow loads, async content. Test your waits, not your <code>sleep()</code>s.</span>
+      </div>
+    </a>
+
+    <a href="broken-links/" class="module-card">
+      <i class="ti ti-link-off"></i>
+      <div>
+        <span class="module-card-title">Broken Link Testing</span>
+        <span class="module-card-desc">Valid links, 404s, and redirects. Crawl this page with your tool of choice.</span>
+      </div>
+    </a>
+
+    <a href="404/" class="module-card">
+      <i class="ti ti-error-404"></i>
+      <div>
+        <span class="module-card-title">404 Handling</span>
+        <span class="module-card-desc">Test how your automation behaves when a page simply doesn't exist.</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="about-section">
+  <p>Part of the <strong><a href="https://qajourney.net" target="_blank">QAJourney.net</a></strong> ecosystem. Built for testers who want a real environment — not a tutorial. Works with Selenium, Cypress, Playwright, k6, Burp Suite, or plain manual testing. Every module includes test case tracking, bug reporting, and AI-assisted prompt generation.</p>
+</section>
+
+<footer>
+  <p>Created by <strong>QAJourney</strong> &nbsp;·&nbsp; Powered by testers, for testers.</p>
+  <div class="socials">
+    <a href="https://www.youtube.com/@QAJourneyBlog" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.facebook.com/breakverify" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/company/qa-journey-blog" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://buymeacoffee.com/qajourney" target="_blank"><i class="fas fa-mug-hot"></i></a>
+  </div>
+</footer>
+
+<div id="bmc-float">
+  <a href="https://buymeacoffee.com/qajourney" target="_blank">☕ Support Us</a>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
