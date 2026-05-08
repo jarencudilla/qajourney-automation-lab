@@ -1,0 +1,13 @@
+{
+  "name": "qajourney-cypress",
+  "version": "3.0.0",
+  "description": "Cypress automation scripts for QAJourney Playground v3",
+  "scripts": {
+    "test": "npx cypress run",
+    "test:open": "npx cypress open",
+    "test:headed": "npx cypress run --headed"
+  },
+  "devDependencies": {
+    "cypress": "^13.8.0"
+  }
+}

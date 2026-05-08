@@ -1,67 +1,62 @@
-# Cypress Test Suite for QAJourney Playground
+# Cypress — QAJourney Automation Lab
 
-## 📌 Overview
-This directory contains Cypress tests designed to interact with the **QA Testing Playground** at [playground.qajourney.net](https://playground.qajourney.net/). 
+Cypress scripts for [playground.qajourney.net](https://playground.qajourney.net).
 
-These tests cover UI validation, API interception, iframe interactions, accessibility checks, and more.
+## Setup
 
-## 📂 Folder Structure
-```
-/cypress/
-├── tests/              # Main Cypress test files
-│   ├── form_validation.spec.js
-│   ├── network_delay.spec.js
-│   ├── shadow_dom.spec.js
-│   ├── iframe.spec.js
-│   ├── broken_links.spec.js
-│   ├── accessibility.spec.js
-│   ├── alerts.spec.js
-├── support/            # (Optional) Custom Cypress commands
-├── fixtures/           # (Optional) Test data (JSON files)
-├── plugins/            # (Optional) Cypress plugins
-├── cypress.config.js   # Cypress configuration file
-├── README.md           # This file
+```bash
+npm install
 ```
 
-## 🚀 How to Run the Tests
-### 1️⃣ Install Cypress
-If you haven’t installed Cypress yet, run:
-```sh
-npm install cypress --save-dev
+## Run Tests
+
+```bash
+# Headless (CI)
+npm test
+
+# Interactive (Cypress Test Runner)
+npm run test:open
+
+# Headed
+npm run test:headed
 ```
 
-### 2️⃣ Open Cypress UI
-```sh
-npx cypress open
+## Test Files
+
+| File | Module | TCs |
+|------|--------|-----|
+| `login.cy.js` | Login Scenario | 7 |
+| `form-validation.cy.js` | Form Validation | 7 |
+| `basic-ui.cy.js` | Basic UI Elements | 7 |
+| `dynamic-dom.cy.js` | Dynamic DOM | 7 |
+| `alerts.cy.js` | JavaScript Alerts | 5 |
+| `iframes.cy.js` | iFrame Interaction | 4 |
+| `network-delay.cy.js` | Network Delays | 4 |
+| `broken-links.cy.js` | Broken Links | 4 |
+
+## Key Locator Patterns
+
+```javascript
+// Standard selector
+cy.get('[data-testid="username-input"]').type('admin');
+
+// Frame interaction (srcdoc iframes)
+cy.get('[data-testid="form-iframe"]').its('0.contentDocument.body')
+  .find('[data-testid="iframe-input"]').type('value');
+
+// Wait for delayed element
+cy.get('[data-testid="auto-content"]', { timeout: 5000 }).should('be.visible');
+
+// Dialog stubs
+cy.on('window:alert', (text) => { expect(text).to.contain('expected'); });
+cy.on('window:confirm', () => true);
+cy.window().then((win) => { cy.stub(win, 'prompt').returns('value'); });
+
+// Request assertion (broken links)
+cy.request({ url: '/broken-path', failOnStatusCode: false }).its('status').should('eq', 404);
 ```
-This will launch the Cypress Test Runner.
 
-### 3️⃣ Run All Tests Headlessly
-```sh
-npx cypress run
-```
-Runs all tests in CLI mode.
+## Related Reading
 
-### 4️⃣ Run a Single Test File
-```sh
-npx cypress run --spec "cypress/tests/form_validation.spec.js"
-```
-
-## 📝 Test Scenarios Covered
-| Test | Target Page | Description |
-|------|------------|-------------|
-| **Form Validation** | [/form/](https://playground.qajourney.net/form/) | Input handling, validation errors |
-| **Network Delay Handling** | [/network-delay/](https://playground.qajourney.net/network-delay/) | Mock API responses |
-| **Shadow DOM Elements** | [/dynamic-dom/](https://playground.qajourney.net/dynamic-dom/) | Handling Web Components |
-| **IFrame Testing** | [/iframes/](https://playground.qajourney.net/iframes/) | Interacting inside iframes |
-| **Broken Links Detection** | [/broken-links/](https://playground.qajourney.net/broken-links/) | 404 error handling |
-| **Accessibility Testing** | [/basic-ui/](https://playground.qajourney.net/basic-ui/) | WCAG compliance tests |
-| **JS Alerts & Popups** | [/alerts/](https://playground.qajourney.net/alerts/) | Handling alert popups |
-
-## 🔗 Related Resources
-- **QA Testing Playground:** [playground.qajourney.net](https://playground.qajourney.net/)
-- **Full Automation Lab Repo:** [GitHub Repo](https://github.com/jarencudilla/qajourney-automation-lab)
-- **Cypress Documentation:** [cypress.io](https://www.cypress.io/)
-
----
-🚀 **Start testing now! Fork the repo & contribute.**
+- [Cypress Automation Testing Guide](https://qajourney.net/cypress-automation-testing-guide/)
+- [Cypress Full-Stack Testing](https://qajourney.net/cypress-full-stack-testing-api-ui/)
