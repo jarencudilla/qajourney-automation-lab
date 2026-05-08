@@ -1,14 +1,15 @@
 {
-  "name": "selenium-qa-starter-guide",
-  "version": "1.0.0",
-  "description": "Starter scripts for Selenium automation with QAJourney",
-  "main": "test/basic-navigation.test.js",
+  "name": "qajourney-selenium",
+  "version": "3.0.0",
+  "description": "Selenium WebDriver automation scripts for QAJourney Playground v3",
   "scripts": {
-    "test": "mocha test/*.test.js"
+    "test": "npx mocha tests/**/*.test.js --timeout 20000",
+    "test:login": "npx mocha tests/login.test.js --timeout 20000"
   },
   "dependencies": {
-    "selenium-webdriver": "^4.16.0",
-    "chai": "^4.3.7",
-    "mocha": "^10.2.0"
+    "selenium-webdriver": "^4.19.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.4.0"
   }
 }

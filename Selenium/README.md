@@ -1,45 +1,55 @@
-# Selenium QA Starter Guide
+# Selenium — QAJourney Automation Lab
 
-This repository is the official companion to the [QAJourney blog post](https://qajourney.net/selenium-automation-qa-testers)  
-**"Automation Testing with Selenium: A Practical Guide for QA Testers (No CI/CD Required)"**
+Selenium WebDriver scripts for [playground.qajourney.net](https://playground.qajourney.net). JavaScript with Mocha test runner.
 
-## What You'll Learn
-
-- How to start browser automation without CI/CD
-- Writing Selenium tests using JavaScript (Node.js)
-- Using [playground.qajourney.net](https://playground.qajourney.net) for hands-on practice
-- Applying Page Object Model, explicit waits, and modularization
-
-## Setup Instructions
+## Setup
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/selenium-qa-starter-guide.git
-cd selenium-qa-starter-guide
 npm install
-node test/basic-navigation.test.js
 ```
 
-> Make sure you have Node.js installed and ChromeDriver available in your system `PATH`.
+Chrome must be installed. ChromeDriver is handled automatically by `selenium-webdriver` 4.x+.
 
-## Test Scenarios
+## Run Tests
 
-- `basic-navigation.test.js` — Loads a test page and validates a heading
-- `form-submission.test.js` — Fills out a form and checks the response
-- `pom/loginPage.js` — Page Object Model example using selectors and methods
+```bash
+# All tests
+npm test
 
-## Tech Stack
+# Single file
+npx mocha tests/login.test.js --timeout 20000
+```
 
-- JavaScript (Node.js)
-- [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/)
-- [Mocha](https://mochajs.org/) for test execution
-- [Chai](https://www.chaijs.com/) for assertions
+## Test Files
 
-## Practice Site
+| File | Module | TCs |
+|------|--------|-----|
+| `login.test.js` | Login Scenario | 7 |
+| `form-validation.test.js` | Form Validation | 3 |
+| `dynamic-dom.test.js` | Dynamic DOM | 4 |
+| `network-delay.test.js` | Network Delays | 3 |
 
-All test cases in this repo run against  
-**[https://playground.qajourney.net](https://playground.qajourney.net)** — a live sandbox built for automation practice and training.
+## Key Locator Patterns
 
-## Related Blog Post
+```javascript
+const { Builder, By, until } = require('selenium-webdriver');
 
-Want the full breakdown with context and code walkthroughs?  
-Read the post: [Automation Testing with Selenium (No CI/CD Required)](https://qajourney.net/selenium-automation-qa-testers)
+// Element interaction
+await driver.findElement(By.css('[data-testid="username-input"]')).sendKeys('admin');
+await driver.findElement(By.css('[data-testid="login-button"]')).click();
+
+// Explicit wait — always use this, never Thread.sleep()
+await driver.wait(until.elementIsVisible(driver.findElement(By.id('msg-ok'))), 5000);
+await driver.wait(until.elementLocated(By.css('[data-testid="dom-item-1"]')), 5000);
+
+// Check enabled/disabled state
+const enabled = await driver.findElement(By.css('[data-testid="disabled-input"]')).isEnabled();
+
+// Check visibility
+const displayed = await driver.findElement(By.id('msg-ok')).isDisplayed().catch(() => false);
+```
+
+## Related Reading
+
+- [Selenium Automation for QA Testers](https://qajourney.net/selenium-automation-qa-testers/)
+- [Test Automation Essentials](https://qajourney.net/test-automation-essentials-beginners-guide-tools-frameworks/)
