@@ -1,0 +1,16 @@
+{
+  "name": "qajourney-playwright",
+  "version": "3.0.0",
+  "description": "Playwright automation scripts for QAJourney Playground v3",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+// @ts-check
+const { test, expect } = require('@playwright/test');
 
 const BASE = 'https://playground.qajourney.net';
 
@@ -10,7 +11,7 @@ test.describe('Broken Link Testing', () => {
 
   test('TC-01 | valid external link → returns 200', async ({ page }) => {
     const href = await page.getByTestId('link-valid-home').getAttribute('href');
-    const response = await page.request.get(href!);
+    const response = await page.request.get(href);
     expect(response.status()).toBe(200);
   });
 
@@ -41,7 +42,7 @@ test.describe('Broken Link Testing', () => {
 
   test('TC-06 | crawl all data-testid links and classify by status', async ({ page }) => {
     const links = await page.locator('a[data-testid]').all();
-    const results: { testid: string; href: string; status: number }[] = [];
+    const results = [];
 
     for (const link of links) {
       const testid = await link.getAttribute('data-testid') ?? '';
