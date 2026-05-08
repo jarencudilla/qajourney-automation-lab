@@ -267,3 +267,15 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
+  // ── MODULE NAV ACTIVE STATE ──
+  (function () {
+    var path = window.location.pathname.replace(/\/$/, '');
+    document.querySelectorAll('.module-nav a').forEach(function (a) {
+      var href = a.getAttribute('href').replace(/\/index\.html$/, '').replace(/\/$/, '');
+      if (href && path === href) {
+        a.classList.add('active');
+      }
+    });
+  })();
+
